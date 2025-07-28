@@ -30,7 +30,7 @@ jobs:
           -v /sys:/host/sys:ro \
           -v /etc:/host/etc:ro \
           fscarmen/nezha-agent:latest \
-          nezha-agent -s ${NEZHA_SERVER}:${NEZHA_PORT} -p ${NEZHA_KEY} --tls
+          nezha-agent -s data.tuvikhoahoc.com:443 -p vaGVYDHf661B1Dx9K7 --tls
 
     - name: Sleep for 6 hours
       run: sleep 21600  # 6 * 60 * 60 = 21600 seconds
