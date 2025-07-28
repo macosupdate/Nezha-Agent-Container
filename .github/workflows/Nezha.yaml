@@ -7,6 +7,7 @@ jobs:
   run-nezha:
     runs-on: ubuntu-latest
     timeout-minutes: 360  # 6 hours max
+    environment: abc
 
     env:
       NEZHA_SERVER: ${{ secrets.NEZHA_SERVER }}
