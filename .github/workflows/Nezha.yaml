@@ -1,0 +1,38 @@
+name: Run Nezha Agent in Docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-nezha:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360  # 6 hours max
+
+    env:
+      NEZHA_SERVER: ${{ secrets.NEZHA_SERVER }}
+      NEZHA_PORT: ${{ secrets.NEZHA_PORT }}
+      NEZHA_KEY: ${{ secrets.NEZHA_KEY }}
+      NEZHA_TLS: ${{ secrets.NEZHA_TLS }}
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Run nezha-agent docker
+      run: |
+        docker run -d \
+          --name nezha-agent \
+          --privileged \
+          --pid=host \
+          -v /:/host:ro \
+          -v /proc:/host/proc:ro \
+          -v /sys:/host/sys:ro \
+          -v /etc:/host/etc:ro \
+          -e NEZHA_SERVER=${NEZHA_SERVER} \
+          -e NEZHA_PORT=${NEZHA_PORT} \
+          -e NEZHA_KEY=${NEZHA_KEY} \
+          -e NEZHA_TLS=${NEZHA_TLS} \
+          fscarmen/nezha-agent:latest
+
+    - name: Sleep for 6 hours
+      run: sleep 21600  # 6 * 60 * 60 = 21600 seconds
