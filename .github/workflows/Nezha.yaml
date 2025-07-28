@@ -29,11 +29,8 @@ jobs:
           -v /proc:/host/proc:ro \
           -v /sys:/host/sys:ro \
           -v /etc:/host/etc:ro \
-          -e NEZHA_SERVER=data.tuvikhoahoc.com \
-          -e NEZHA_PORT=443 \
-          -e NEZHA_KEY=s4uxiykNPSjhhe36wX \
-          -e NEZHA_TLS=--tls \
-          fscarmen/nezha-agent:latest
+          fscarmen/nezha-agent:latest \
+          nezha-agent -s ${NEZHA_SERVER}:${NEZHA_PORT} -p ${NEZHA_KEY} --tls
 
     - name: Sleep for 6 hours
       run: sleep 21600  # 6 * 60 * 60 = 21600 seconds
