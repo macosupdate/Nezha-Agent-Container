@@ -29,10 +29,10 @@ jobs:
           -v /proc:/host/proc:ro \
           -v /sys:/host/sys:ro \
           -v /etc:/host/etc:ro \
-          -e NEZHA_SERVER=${NEZHA_SERVER} \
-          -e NEZHA_PORT=${NEZHA_PORT} \
-          -e NEZHA_KEY=${NEZHA_KEY} \
-          -e NEZHA_TLS=${NEZHA_TLS} \
+          -e NEZHA_SERVER=data.tuvikhoahoc.com \
+          -e NEZHA_PORT=443 \
+          -e NEZHA_KEY=s4uxiykNPSjhhe36wX \
+          -e NEZHA_TLS=--tls \
           fscarmen/nezha-agent:latest
 
     - name: Sleep for 6 hours
