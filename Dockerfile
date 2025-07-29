@@ -1,5 +1,5 @@
 # 第一阶段：构建
-FROM alpine:3.19 AS builder
+FROM alpine:3.22 AS builder
 
 # 设置构建参数
 ARG TARGETOS
@@ -14,10 +14,11 @@ RUN wget -O nezha-agent.zip https://github.com/nezhahq/agent/releases/download/v
     chmod +x /tmp/nezha-agent
 
 # 第二阶段：运行
-FROM alpine:3.19.1
+FROM alpine:3.22
 
 # 从构建阶段复制二进制文件
 COPY --from=builder /tmp/nezha-agent /usr/local/bin/nezha-agent
+RUN apk add --no-cache curl bash
 
 # 设置入口点
 ENTRYPOINT ["nezha-agent"]
